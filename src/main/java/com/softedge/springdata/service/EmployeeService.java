@@ -12,4 +12,6 @@ public interface EmployeeService {
 	public Employee updateEmployee(Employee employee);
 	public Employee findById(int employeeId) throws EmployeeNotFoundException;
 	public List<Employee> findAll();
+	public List<Employee> findEmployeeByEmployeeName(String employeeName);
+	public List<Employee> findEmployees(String department, double salary);
 }

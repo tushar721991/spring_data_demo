@@ -50,7 +50,7 @@ public class EmployeeController {
 
 	@PutMapping("/employee")
 	public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee) {
-		return new ResponseEntity<Employee>(employee, HttpStatus.OK);
+		return new ResponseEntity<Employee>(employeeService.updateEmployee(employee), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/employee/{employeeId}")
@@ -60,4 +60,16 @@ public class EmployeeController {
 		employeeService.deleteEmployee(employee);
 		return new ResponseEntity<Employee>(HttpStatus.OK);
 	}
+	
+	@GetMapping("/employees/{employeeName}")
+	public ResponseEntity<List<Employee>> findEmployeeByEmployeeName(@PathVariable("employeeName") String employeeName) {
+		return new ResponseEntity<List<Employee>>(employeeService.findEmployeeByEmployeeName(employeeName), HttpStatus.OK);
+	}
+
+	@GetMapping("/allEmployees/{employeeDepartment}/{employeeSalary}")
+	public List<Employee> findEmployees(@PathVariable String employeeDepartment, @PathVariable double employeeSalary) {
+		return employeeService.findEmployees(employeeDepartment, employeeSalary);
+	}
+
+	
 }
